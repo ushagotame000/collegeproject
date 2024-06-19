@@ -3,7 +3,7 @@ import React from "react";
 function Chat() {
   return (
     <>
-      <div className="w-full">ChatBox</div>
+      <div className="flex-grow">ChatBox</div>
     </>
   );
 }
