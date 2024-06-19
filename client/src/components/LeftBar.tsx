@@ -34,7 +34,11 @@ function LeftBar() {
                 onClick={toggleDropdown}
                 className="bg-gray-600 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-700 focus:outline-none"
               >
-                <i className="fas fa-sort text-sm"></i>
+                {dropdownOpen ? (
+                  <i className="fas fa-times text-sm"></i>
+                ) : (
+                  <i className="fas fa-sort text-sm"></i>
+                )}
               </button>
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-gray-400 text-white rounded-md shadow-lg z-10">
@@ -43,19 +47,13 @@ function LeftBar() {
                       href="."
                       className="block px-4 py-2 text-sm hover:bg-gray-600"
                     >
-                      Sort by Name
+                      Recent First
                     </a>
                     <a
                       href="."
                       className="block px-4 py-2 text-sm hover:bg-gray-600"
                     >
-                      Sort by Date
-                    </a>
-                    <a
-                      href="."
-                      className="block px-4 py-2 text-sm hover:bg-gray-600"
-                    >
-                      Sort by Status
+                      Unread First
                     </a>
                   </div>
                 </div>
