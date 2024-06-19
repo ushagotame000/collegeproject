@@ -3,14 +3,15 @@ import LeftBar from "../components/LeftBar";
 import TopBar from "../components/TopBar";
 import Chat from "../components/Chat";
 import RightBar from "../components/RightBar";
+
 function Home() {
   return (
     <>
-      <div className="flex justify-between h-screen">
-        <LeftBar></LeftBar>
-        <div className="s flex-col w-full h-full">
+      <div className="flex h-screen">
+        <LeftBar />
+        <div className="flex flex-col w-full">
           <TopBar />
-          <div className="flex w-full justify-between">
+          <div className="flex flex-grow">
             <Chat />
             <RightBar />
           </div>

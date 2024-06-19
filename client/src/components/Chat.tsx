@@ -3,7 +3,7 @@ import React from "react";
 function Chat() {
   return (
     <>
-      <div className="w-full h-full">ChatBox</div>
+      <div className="w-full">ChatBox</div>
     </>
   );
 }
