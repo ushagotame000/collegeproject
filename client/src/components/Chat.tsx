@@ -4,7 +4,22 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 function Chat() {
   return (
     <div className="flex flex-col h-full flex-grow">
-      <div className="bg-black text-white p-2">Top Menu</div>
+      <div className="bg-black text-white p-2 flex items-baseline justify-between">
+        <div className=" flex grow-0 items-baseline">
+          <div className="rounded-full h-11 w-11 p-3 bg-gray-400 flex items-center justify-center">
+            <span className="text-sm">Image</span>
+          </div>
+          <div className="text-sm p-2">Contact Name</div>
+        </div>
+        <div>
+          <button className="mr-2 focus:outline-none">
+            <i className="fas fa-search"></i>
+          </button>
+          <button className="mr-2 ml-2 rounded-full  h-7 w-7 border-white border focus:outline-none">
+            <i className="fas fa-info"></i>
+          </button>
+        </div>
+      </div>
       <div className="flex-grow overflow-y-auto bg-gray-200 p-2">Messages</div>
       <div className="bg-black text-white p-4 flex items-center space-x-2">
         <label
