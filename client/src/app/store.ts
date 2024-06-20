@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-
+import sideBarToggler from "../features/sideBar/sideBarToggleSlice";
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    sideBar: sideBarToggler,
+  },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
