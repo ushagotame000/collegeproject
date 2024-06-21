@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { contact_list } from "../assets/assets";
+
+interface Contact {
+  contact_name: string;
+  contact_image: string;
+}
 
 function LeftBar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [activeContact, setActiveContact] = useState<number | null>(null);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleContactClick = (index: number) => {
+    setActiveContact(index);
   };
 
   return (
@@ -61,7 +72,22 @@ function LeftBar() {
             </div>
           </div>
         </div>
-        <div className="contacts">Contacts</div>
+        <div className="contact_list bg-white h-5/6 overflow-y-auto text-black">
+          {contact_list.map((contact: Contact, index: number) => (
+            <div
+              key={index}
+              className={`contact flex items-center p-2 border-b border-gray-200 cursor-pointer rounded-md hover:bg-slate-400 ${activeContact === index ? "bg-gray-400" : ""}`}
+              onClick={() => handleContactClick(index)}
+            >
+              <img
+                src={contact.contact_image}
+                alt={contact.contact_name}
+                className={`w-10 h-10 rounded-full mr-3 ${activeContact === index ? "ring-2 ring-blue-500" : ""}`}
+              />
+              <span>{contact.contact_name}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
