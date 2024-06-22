@@ -6,9 +6,11 @@ import {
   selectShowInfo,
   toggleInfo,
 } from "../features/sideBar/sideBarToggleSlice";
-
 function Chat() {
   const showInfo = useSelector((state: RootState) => selectShowInfo(state));
+  const selectedContact = useSelector(
+    (state: RootState) => state.contact.selectedContact
+  );
   const [searchVisible, setSearchVisible] = useState(false);
   const dispatch: AppDispatch = useDispatch();
 
@@ -21,12 +23,16 @@ function Chat() {
   };
   return (
     <div className="flex flex-col h-full flex-grow">
-      <div className="bg-black text-white p-2 flex items-baseline justify-between">
-        <div className=" flex grow-0 items-baseline">
-          <div className="rounded-full h-11 w-11 p-3 bg-gray-400 flex items-center justify-center">
-            <span className="text-sm">Image</span>
+      <div className="bg-black text-white p-2 flex items-center justify-between">
+        <div className=" flex grow-0 items-center">
+          <div className="rounded-full h-11 w-11 bg-gray-400 flex items-center justify-center">
+            <img
+              src={selectedContact?.contact_image}
+              alt=""
+              className="h-full w-full rounded-full object-cover"
+            />
           </div>
-          <div className="text-sm p-2">Contact Name</div>
+          <div className="text-sm p-2">{selectedContact?.contact_name}</div>
         </div>
         <div className="flex justify-center items-baseline">
           <div className="flex">
