@@ -23,7 +23,7 @@ function TopBar() {
           <i className="fas fa-user"></i>
         </button>
         {showLogout && (
-          <button className="absolute right-2 top-12 mt-2 py-2 px-4 bg-violet-500 hover:bg-violet-600 rounded shadow-lg focus:outline-none active:bg-violet-700">
+          <button className="absolute right-2 top-8 mt-2 py-2 px-4 bg-violet-500 hover:bg-violet-600 rounded shadow-lg focus:outline-none active:bg-violet-700">
             Log out
           </button>
         )}
