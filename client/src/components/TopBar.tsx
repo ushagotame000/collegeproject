@@ -3,7 +3,7 @@ import React from "react";
 function TopBar() {
   return (
     <>
-      <div className="nav bg-black h-10 text-white w-full flex justify-end items-center">
+      <div className="nav bg-black h-10 text-white w-full flex justify-end items-center border-b">
         <button className="mr-2 focus:outline-none">
           <i className="fas fa-cog"></i>
         </button>

@@ -6,7 +6,6 @@ import RightBar from "../components/RightBar";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import { selectShowInfo } from "../features/sideBar/sideBarToggleSlice";
-import { stat } from "fs";
 function Home() {
   const sideBarInfo = useSelector((state: RootState) => selectShowInfo(state));
   return (
@@ -18,7 +17,7 @@ function Home() {
           <div className="flex flex-grow">
             <Chat />
 
-            {sideBarInfo ? <RightBar /> : <></>}
+            {sideBarInfo && <RightBar />}
           </div>
         </div>
       </div>
