@@ -1,0 +1,14 @@
+/* styles/rightbar.css */
+
+.rightbar {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.rightbar.animate-show {
+  opacity: 1;
+}
+
+.rightbar.animate-hide {
+  opacity: 0;
+}

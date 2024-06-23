@@ -1,11 +1,27 @@
 import React, { useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { contact_list } from "../assets/assets";
+import { AppDispatch } from "../app/store";
+import { useDispatch } from "react-redux";
+import { selectedContact } from "../features/selectedContact/selectedContactSlice";
+
+interface Contact {
+  contact_id: string;
+  contact_name: string;
+  contact_image: string;
+}
 
 function LeftBar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const [activeContact, setActiveContact] = useState<string | null>(null);
+  const dispatch: AppDispatch = useDispatch();
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleContactClick = (contact: Contact) => {
+    setActiveContact(contact.contact_id);
+    dispatch(selectedContact(contact));
   };
 
   return (
@@ -61,7 +77,36 @@ function LeftBar() {
             </div>
           </div>
         </div>
-        <div className="contacts">Contacts</div>
+        <div className="contact_list bg-white h-5/6 overflow-y-auto text-black">
+          {contact_list.map((contact: Contact) => (
+            <div
+              key={contact.contact_id}
+              className={`contact flex items-center p-2 border-b border-gray-200 cursor-pointer rounded-md hover:bg-slate-400 ${
+                activeContact === contact.contact_id ? " bg-blue-400" : ""
+              }`}
+              onClick={() => handleContactClick(contact)}
+            >
+              <div
+                className={`w-10 h-10 rounded-full mr-3  ${
+                  activeContact === contact.contact_id
+                    ? "ring-2 ring-blue-500"
+                    : ""
+                }`}
+              >
+                <img
+                  src={contact.contact_image}
+                  alt={contact.contact_name}
+                  className="h-full w-full rounded-full object-cover"
+                />
+              </div>
+
+              <div>
+                <span>{contact.contact_name}</span>
+                <div>Message</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

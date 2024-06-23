@@ -5,9 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { Provider } from "react-redux";
-import { Store } from "@reduxjs/toolkit";
 import { store } from "./app/store";
-
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
