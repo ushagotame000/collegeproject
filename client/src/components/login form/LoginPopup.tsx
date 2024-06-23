@@ -8,7 +8,7 @@ const LoginPopup = () => {
     <div className="login absolute z-30 w-full h-auto grid place-content-center bg none">
       <form
         // onSubmit={onLogin}
-        className="container max-w-96 bg-black flex flex-col gap-7 rounded-xl text-base p-6 justify-center mt-24"
+        className="container max-w-96 bg-black flex flex-col gap-7 rounded-xl text-base p-6 justify-center mt-20"
       >
         <div className="login-title flex justify-between text-center font-bold text-xl font-mono">
           <h2 className="signup text-white">{currState}</h2>
