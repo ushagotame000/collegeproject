@@ -77,7 +77,7 @@ function LeftBar() {
             </div>
           </div>
         </div>
-        <div className="contact_list bg-white h-5/6 overflow-y-auto text-black">
+        <div className="contact_list  h-5/6 overflow-y-auto text-white">
           {contact_list.map((contact: Contact) => (
             <div
               key={contact.contact_id}
