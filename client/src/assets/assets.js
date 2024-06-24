@@ -2,9 +2,17 @@ import cross_icon from "./cross_icon.png";
 
 import img1 from "./img1.jpg";
 import img2 from "./img2.jpg";
+import profile from "./profile.png";
+import camera from "./camera_icon.png"
+
+
+
+
 
 export const assets = {
   cross_icon,
+  profile,
+  camera
 };
 
 export const contact_list = [
