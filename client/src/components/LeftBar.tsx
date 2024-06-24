@@ -81,15 +81,15 @@ function LeftBar() {
           {contact_list.map((contact: Contact) => (
             <div
               key={contact.contact_id}
-              className={`contact flex items-center p-2 border-b border-gray-200 cursor-pointer rounded-md hover:bg-slate-400 ${
-                activeContact === contact.contact_id ? " bg-blue-400" : ""
+              className={`contact flex items-center p-2  cursor-pointer rounded-md hover:bg-slate-400 ${
+                activeContact === contact.contact_id ? " bg-violet-600" : ""
               }`}
               onClick={() => handleContactClick(contact)}
             >
               <div
                 className={`w-10 h-10 rounded-full mr-3  ${
                   activeContact === contact.contact_id
-                    ? "ring-2 ring-blue-500"
+                    ? "ring-2 ring-blue-400"
                     : ""
                 }`}
               >
