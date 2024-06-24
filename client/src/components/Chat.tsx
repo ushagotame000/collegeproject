@@ -6,6 +6,8 @@ import {
   selectShowInfo,
   toggleInfo,
 } from "../features/sideBar/sideBarToggleSlice";
+import { messages } from "../assets/message"; // Import dummy messages
+
 function Chat() {
   const showInfo = useSelector((state: RootState) => selectShowInfo(state));
   const selectedContact = useSelector(
@@ -21,6 +23,13 @@ function Chat() {
   const handleToggleSearch = () => {
     setSearchVisible(!searchVisible);
   };
+
+  const filteredMessages = messages.filter(
+    (message) =>
+      message.sender_id === selectedContact?.contact_id ||
+      message.receiver_id === selectedContact?.contact_id
+  );
+
   return (
     <div className="flex flex-col h-full flex-grow">
       <div className="bg-black text-white p-2 flex items-center justify-between">
@@ -64,7 +73,37 @@ function Chat() {
           </button>
         </div>
       </div>
-      <div className="flex-grow overflow-y-auto bg-gray-200 p-2">Messages</div>
+      <div className="flex-grow overflow-y-auto h-96 bg-gray-200 p-2">
+        {filteredMessages.map((message) => (
+          <div
+            key={message.message_id}
+            className={`flex ${
+              message.sender_id === selectedContact?.contact_id
+                ? "justify-start"
+                : "justify-end"
+            } mb-2`}
+          >
+            <div
+              className={`p-2 rounded-lg ${
+                message.sender_id === selectedContact?.contact_id
+                  ? "bg-gray-300"
+                  : "bg-blue-500 text-white"
+              }`}
+            >
+              {message.text}
+              {message.attachments.length > 0 &&
+                message.attachments.map((attachment, index) => (
+                  <img
+                    key={index}
+                    src={attachment.url}
+                    alt="attachment"
+                    className="mt-1 rounded"
+                  />
+                ))}
+            </div>
+          </div>
+        ))}
+      </div>
       <div className="bg-black text-white p-4 flex items-center space-x-2">
         <label
           className="bg-gray-600 p-2 rounded-md focus:outline-none flex items-center justify-center cursor-pointer"
