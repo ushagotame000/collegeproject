@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 function TopBar() {
-  const [showLogout, setShowLogout] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
 
   const handleUserIconClick = () => {
-    setShowLogout(!showLogout);
+    setShowOptions(!showOptions);
   };
 
   return (
@@ -22,10 +22,15 @@ function TopBar() {
         >
           <i className="fas fa-user"></i>
         </button>
-        {showLogout && (
-          <button className="absolute right-2 top-8 mt-2 py-2 px-4 bg-violet-500 hover:bg-violet-600 rounded shadow-lg focus:outline-none active:bg-violet-700">
-            Log out
-          </button>
+        {showOptions && (
+          <div className="absolute right-2 top-8 mt-2  bg-transparent   bg-violet-500 rounded shadow-lg">
+            <button className="block w-full text-left py-2 px-4 hover:bg-violet-600 rounded focus:outline-none">
+              Profile
+            </button>
+            <button className="block w-full text-left py-2 px-4 mt-2  hover:bg-violet-600 rounded focus:outline-none">
+              Log out
+            </button>
+          </div>
         )}
       </div>
     </>
