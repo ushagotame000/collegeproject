@@ -9,20 +9,7 @@ function TopBar() {
 
   return (
     <>
-      <div className="nav bg-black h-10 text-white w-full flex justify-between border-b">
-        <div className="searchBar relative mb-2 ">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <i className="fas fa-search text-white"></i>
-          </div>
-          <input
-            type="text"
-            name="searchContact"
-            id="searchContact"
-            className="w-full pl-9 pr-3 py-2 rounded-2xl bg-gray-400 h-9 placeholder:text-white text-sm focus:outline-none"
-            placeholder="Search Contacts...."
-          />
-        </div>
-
+      <div className="nav bg-black h-10 text-white w-full flex justify-end items-center border-b">
         <div className="2">
           {/* setting icon */}
 

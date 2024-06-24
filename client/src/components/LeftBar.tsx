@@ -27,7 +27,7 @@ function LeftBar() {
   return (
     <>
       <div className="bg-black text-white flex-col w-80 h-full p-5">
-        {/* <div className="searchBar relative mb-2 ">
+        <div className="searchBar relative mb-2 ">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <i className="fas fa-search text-white"></i>
           </div>
@@ -37,16 +37,14 @@ function LeftBar() {
             id="searchContact"
             className="w-full pl-9 pr-3 py-2 rounded-2xl bg-gray-400 h-9 placeholder:text-white text-sm focus:outline-none"
             placeholder="Search Contacts...."
-            
           />
-        </div> */}
+        </div>
 
         {/* section 2 */}
 
         <div className="menu mb-1 flex justify-between items-center">
           <div className="text-lg hidden sm:block">Chats</div>
           <div className="flex space-x-2">
-
             {/* icon add */}
 
             <button className="bg-gray-600 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-700 focus:outline-none">
@@ -58,7 +56,6 @@ function LeftBar() {
                 className="bg-gray-600 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-700 focus:outline-none"
               >
                 {/* icon dropdown */}
-
 
                 {dropdownOpen ? (
                   <i className="fas fa-times text-sm"></i>
@@ -114,7 +111,9 @@ function LeftBar() {
               </div>
 
               <div>
-                <span className="hidden sm:block  font-thin md:font-medium lg:text-lg">{contact.contact_name}</span>
+                <span className="hidden sm:block  font-thin md:font-medium lg:text-lg">
+                  {contact.contact_name}
+                </span>
                 <div className="hidden sm:block">Message</div>
               </div>
             </div>
