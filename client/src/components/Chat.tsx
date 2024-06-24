@@ -86,8 +86,8 @@ function Chat() {
             <div
               className={`p-2 rounded-lg ${
                 message.sender_id === selectedContact?.contact_id
-                  ? "bg-gray-300"
-                  : "bg-blue-500 text-white"
+                  ? "bg-blue-300"
+                  : "bg-violet-600 text-white"
               }`}
             >
               {message.text}

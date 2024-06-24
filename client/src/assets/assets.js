@@ -10,12 +10,12 @@ export const assets = {
 export const contact_list = [
   {
     contact_id: "1",
-    contact_name: "Unisha",
+    contact_name: "Natasha",
     contact_image: img1,
   },
   {
     contact_id: "2",
-    contact_name: "Natasha",
+    contact_name: "Unisha",
     contact_image: img2,
   },
   {
