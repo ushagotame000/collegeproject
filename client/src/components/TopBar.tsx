@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function TopBar() {
   const [showOptions, setShowOptions] = useState(false);
@@ -31,9 +32,11 @@ function TopBar() {
           </button>
           {showOptions && (
             <div className="absolute right-2 top-8 mt-2 bg-violet-600 rounded shadow-lg">
+            <Link to = "/profile">
               <button className="block w-full text-left py-2 px-4 hover:bg-violet-800 rounded focus:outline-none border-b border-black">
                 Profile
               </button>
+              </Link>
               <button className="block w-full text-left py-2 px-4 hover:bg-violet-800 rounded focus:outline-none">
                 Log out
               </button>
