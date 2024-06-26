@@ -16,11 +16,10 @@ const contactSlice = createSlice({
   name: "contact",
   initialState,
   reducers: {
-    selectedContact(state, action: PayloadAction<ISelectedContact>) {
-      state.selectedContact = action.payload;
-    },
+      setSelectedContact(state, action: PayloadAction<ISelectedContact | null>) {
+        state.selectedContact = action.payload;    },
   },
 });
 
-export const { selectedContact } = contactSlice.actions;
+export const {setSelectedContact } = contactSlice.actions;
 export default contactSlice.reducer;
