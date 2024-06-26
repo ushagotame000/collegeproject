@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { assets } from "../../assets/assets";
 
 function SignUp() {
   return (
     <>
       <div className="signup-page flex justify-center items-center h-screen bg-gray-100">
-        <form className="container max-w-lg bg-black flex flex-col gap-7 rounded-xl text-base p-6 justify-center">
+        <form className="container max-w-lg bg-black flex flex-col gap-7 rounded-xl text-base p-6 justify-center w-96">
           <div className="signup-title flex justify-between text-center font-bold text-xl font-mono">
             <h2 className="text-white">Sign Up</h2>
             <button

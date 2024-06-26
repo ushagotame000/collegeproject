@@ -3,7 +3,7 @@ function Login() {
   return (
     <>
       <div className="login-page flex justify-center items-center h-screen bg-gray-100">
-        <form className="container max-w-lg bg-black flex flex-col gap-7 rounded-xl text-base p-6 justify-center">
+        <form className="container max-w-lg bg-black flex flex-col gap-7 rounded-xl text-base p-6 justify-center w-96">
           <div className="login-title flex justify-between text-center font-bold text-xl font-mono">
             <h2 className="text-white">Login</h2>
           </div>
