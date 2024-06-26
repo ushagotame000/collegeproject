@@ -8,11 +8,12 @@ function SignUp() {
         <form className="container max-w-lg bg-black flex flex-col gap-7 rounded-xl text-base p-6 justify-center">
           <div className="signup-title flex justify-between text-center font-bold text-xl font-mono">
             <h2 className="text-white">Sign Up</h2>
-            <img
-              src={assets.cross_icon}
-              alt="close"
-              className="cursor-pointer w-4 bg-white rounded-sm"
-            />
+            <button
+              className="bg-white rounded-full h-6 w-6 flex justify-center items-center"
+              onClick={() => (window.location.href = "/login")}
+            >
+              <i className="fas fa-times"></i>
+            </button>
           </div>
 
           <div className="login-input grid grid-cols-2 gap-2">

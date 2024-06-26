@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { assets } from "../../assets/assets";
 function Login() {
   return (
     <>
@@ -7,11 +6,6 @@ function Login() {
         <form className="container max-w-lg bg-black flex flex-col gap-7 rounded-xl text-base p-6 justify-center">
           <div className="login-title flex justify-between text-center font-bold text-xl font-mono">
             <h2 className="text-white">Login</h2>
-            <img
-              src={assets.cross_icon}
-              alt="close"
-              className="cursor-pointer w-4 bg-white rounded-sm"
-            />
           </div>
 
           <div className="email">
