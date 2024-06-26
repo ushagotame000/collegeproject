@@ -69,7 +69,7 @@ function SignUp() {
             Create account
           </button>
 
-          <div className="condition flex items-start gap-2 mt-3.5 font-thin">
+          <div className="condition flex items-start gap-1 font-thin">
             <input type="checkbox" required className="mt-1" />
             <p className="text-white">
               By continuing, I agree to the terms of use & privacy policy.
