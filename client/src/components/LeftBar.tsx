@@ -3,7 +3,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { contact_list } from "../assets/assets";
 import { AppDispatch } from "../app/store";
 import { useDispatch } from "react-redux";
-import { selectedContact } from "../features/selectedContact/selectedContactSlice";
+import { setSelectedContact } from "../features/selectedContact/selectedContactSlice";
 
 interface Contact {
   contact_id: string;
@@ -21,12 +21,12 @@ function LeftBar() {
 
   const handleContactClick = (contact: Contact) => {
     setActiveContact(contact.contact_id);
-    dispatch(selectedContact(contact));
+    dispatch(setSelectedContact(contact));
   };
 
   return (
     <>
-      <div className="bg-black text-white flex-col w-80 h-full p-5">
+      <div className="bg-black text-white flex-col w-80 h-full p-5 hidden lg:block md:block">
         <div className="searchBar relative mb-2 ">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <i className="fas fa-search text-white"></i>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../app/store";
@@ -7,6 +7,7 @@ import {
   toggleInfo,
 } from "../features/sideBar/sideBarToggleSlice";
 import { messages } from "../assets/message"; // Import dummy messages
+import { setSelectedContact } from "../features/selectedContact/selectedContactSlice";
 
 function Chat() {
   const showInfo = useSelector((state: RootState) => selectShowInfo(state));
@@ -16,6 +17,17 @@ function Chat() {
   const [searchVisible, setSearchVisible] = useState(false);
   const dispatch: AppDispatch = useDispatch();
 
+
+
+
+  
+  const handleBackToContacts = () => {
+    dispatch(setSelectedContact(null));
+  };
+
+
+
+
   const handleToggleInfo = () => {
     dispatch(toggleInfo());
   };
@@ -24,6 +36,32 @@ function Chat() {
     setSearchVisible(!searchVisible);
   };
 
+
+  // for the icon effect 
+  
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1024 && showInfo) {
+        dispatch(toggleInfo());
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Initial check
+    handleResize();
+
+
+
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [dispatch, showInfo]);
+
+
+// message show
+
   const filteredMessages = messages.filter(
     (message) =>
       message.sender_id === selectedContact?.contact_id ||
@@ -31,8 +69,14 @@ function Chat() {
   );
 
   return (
-    <div className="flex flex-col h-full flex-grow">
+    <div className="flex flex-col h-full flex-grow  lg:block">
       <div className="bg-black text-white p-2 flex items-center justify-between">
+        <div className="left-arrow">
+  <button onClick={handleBackToContacts}>
+              <i className="fa fa-angle-left" aria-hidden="true"></i>
+
+          </button>
+        </div>
         <div className=" flex grow-0 items-center">
           <div className="rounded-full h-11 w-11 bg-gray-400 flex items-center justify-center">
             <img
@@ -136,6 +180,8 @@ function Chat() {
           <i className="fas fa-paper-plane"></i>
         </button>
       </div>
+
+      
     </div>
   );
 }
