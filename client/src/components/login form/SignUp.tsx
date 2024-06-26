@@ -64,7 +64,7 @@ function SignUp() {
 
           <button
             type="submit"
-            className="bg-purple-500 border-none p-3 rounded-md text-white"
+            className="bg-purple-600 border-none p-3 rounded-md text-white"
           >
             Create account
           </button>
