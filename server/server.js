@@ -5,14 +5,21 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./src/config/db.js";
 import { setupSocket } from "./src/config/socket.js";
+import authRoutes from "./src/routes/authRoute.js";
 
 dotenv.config();
 connectDB();
+
 const app = express();
 app.use(cors());
+app.use(express.json());
+
+app.use("/api/auth", authRoutes);
+
 const server = http.createServer(app);
 const io = setupSocket(server);
-const PORT = process.env.PORT;
+
+const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
   console.log(`Server is running at port ${PORT}`);
 });

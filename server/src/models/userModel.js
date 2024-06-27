@@ -21,7 +21,13 @@ const userSchema = new mongoose.Schema({
   status: {
     type: String,
   },
-  contacts: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  contacts: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  bio: {
+    type: String,
+  },
+  hobbies: {
+    type: String,
+  },
 });
 const User = mongoose.model("User", userSchema);
 export default User;

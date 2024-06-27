@@ -1,10 +1,57 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 
-function SignUp() {
+interface UserData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+const SignUp: React.FC = () => {
+  const [userData, setUserData] = useState<UserData>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [error, setError] = useState<string>();
+  const [checkboxChecked, setCheckBoxChecked] = useState<boolean>(false);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleCheck = (e: ChangeEvent<HTMLInputElement>) => {
+    setCheckBoxChecked(e.target.checked);
+    if (error && e.target.checked) {
+      setError("");
+    }
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!checkboxChecked) {
+      setError("Please agree to the terms of use & privacy policy");
+      return;
+    }
+
+    // Add your signup logic here
+    console.log("Form submitted with data:", userData);
+  };
+
   return (
     <>
       <div className="signup-page flex justify-center items-center h-screen bg-gray-100">
-        <form className="container max-w-lg bg-black flex flex-col gap-7 rounded-xl text-base p-6 justify-center w-96">
+        <form
+          className="container max-w-lg bg-black flex flex-col gap-7 rounded-xl text-base p-6 justify-center w-96"
+          onSubmit={handleSubmit}
+        >
           <div className="signup-title flex justify-between text-center font-bold text-xl font-mono">
             <h2 className="text-white">Sign Up</h2>
             <button
@@ -15,20 +62,26 @@ function SignUp() {
             </button>
           </div>
 
+          {error && <div className="text-red-500 text-center">{error}</div>}
+
           <div className="login-input grid grid-cols-2 gap-2">
             <input
               type="text"
-              name="first_name"
+              name="firstName"
               placeholder="First Name"
               required
               className="border border-gray-300 p-3 rounded-sm"
+              value={userData.firstName}
+              onChange={handleChange}
             />
             <input
               type="text"
-              name="last_name"
+              name="lastName"
               placeholder="Last Name"
               required
               className="border border-gray-300 p-3 rounded-sm"
+              value={userData.lastName}
+              onChange={handleChange}
             />
           </div>
 
@@ -39,6 +92,8 @@ function SignUp() {
               placeholder="Mobile number or Email"
               required
               className="border border-gray-300 p-3 rounded-sm w-full"
+              value={userData.email}
+              onChange={handleChange}
             />
           </div>
 
@@ -49,16 +104,20 @@ function SignUp() {
               placeholder="Password"
               required
               className="border border-gray-300 p-3 rounded-sm w-full"
+              value={userData.password}
+              onChange={handleChange}
             />
           </div>
 
           <div className="Password2">
             <input
               type="password"
-              name="confirm_password"
+              name="confirmPassword"
               placeholder="Confirm Password"
               required
               className="border border-gray-300 p-3 rounded-sm w-full"
+              value={userData.confirmPassword}
+              onChange={handleChange}
             />
           </div>
 
@@ -70,7 +129,13 @@ function SignUp() {
           </button>
 
           <div className="condition flex items-start gap-1 font-thin">
-            <input type="checkbox" required className="mt-1" />
+            <input
+              type="checkbox"
+              required
+              className="mt-1"
+              checked={checkboxChecked}
+              onChange={handleCheck}
+            />
             <p className="text-white">
               By continuing, I agree to the terms of use & privacy policy.
             </p>
@@ -89,6 +154,6 @@ function SignUp() {
       </div>
     </>
   );
-}
+};
 
 export default SignUp;
