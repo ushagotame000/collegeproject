@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import sideBarToggler from "../features/sideBar/sideBarToggleSlice";
 import contactReducer from "../features/selectedContact/selectedContactSlice";
+import authSlice from "../features/users/authSlice";
 export const store = configureStore({
   reducer: {
     sideBar: sideBarToggler,
     contact: contactReducer,
+    auth: authSlice,
   },
 });
 
