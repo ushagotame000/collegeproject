@@ -9,10 +9,11 @@ import Chat from "./components/Chat";
 import LeftBar from "./components/LeftBar";
 import { useSelector } from "react-redux";
 import { RootState } from "./app/store";
-
 // import { useState } from "react";
 function App() {
-  const selectedContact = useSelector((state: RootState) => state.contact.selectedContact);
+  const selectedContact = useSelector(
+    (state: RootState) => state.contact.selectedContact
+  );
   // const [showLogin, setShowLogin] = useState(false);
 
   return (
@@ -23,7 +24,10 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
-        <Route path="/chat" element={selectedContact ? <Chat /> : <LeftBar />}></Route>
+        <Route
+          path="/chat"
+          element={selectedContact ? <Chat /> : <LeftBar />}
+        ></Route>
       </Routes>
     </BrowserRouter>
   );
