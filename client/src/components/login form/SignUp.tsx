@@ -54,13 +54,13 @@ const SignUp: React.FC = () => {
     try {
       const resultAction = await dispatch(
         signupUser({
-          username: userData.firstName + userData.lastName,
+          username: userData.firstName + " " + userData.lastName,
           email: userData.email,
           password: userData.password,
         })
       );
       if (signupUser.fulfilled.match(resultAction)) {
-        navigate("/");
+        navigate("/login");
       }
     } catch (error) {
       console.error("Failed to sign up:", error);
