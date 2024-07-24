@@ -69,7 +69,7 @@ function Chat() {
   );
 
   return (
-    <div className="flex flex-col h-full flex-grow  lg:block">
+    <div className="flex flex-col h-full flex-grow">
       <div className="bg-black text-white p-2 flex items-center justify-between">
         <div className="left-arrow">
   <button onClick={handleBackToContacts}>

@@ -36,6 +36,12 @@ export const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
+    const userData = {
+      email: user.email,
+      username: user.username,
+      _id: user._id,
+      
+    };
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -50,7 +56,7 @@ export const loginUser = async (req, res) => {
       { expiresIn: "30d" }
     );
 
-    res.status(200).json({ token, user });
+    res.status(200).json({ token, user: userData });
   } catch (error) {
     res.status(500).json({ message: "Error logging in", error: error.message });
   }
