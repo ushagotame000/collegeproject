@@ -26,7 +26,7 @@ function LeftBar() {
 
   return (
     <>
-      <div className="bg-black text-white flex-col w-80 h-full p-5 hidden lg:block md:block">
+      <div className="bg-black text-white w-80 h-full p-5  lg:block md:block ">
         <div className="searchBar relative mb-2 ">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <i className="fas fa-search text-white"></i>
