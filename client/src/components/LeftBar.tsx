@@ -4,7 +4,6 @@ import { contact_list } from "../assets/assets";
 import { AppDispatch } from "../app/store";
 import { useDispatch } from "react-redux";
 import { setSelectedContact } from "../features/selectedContact/selectedContactSlice";
-
 interface Contact {
   contact_id: string;
   contact_name: string;
@@ -12,6 +11,7 @@ interface Contact {
 }
 
 function LeftBar() {
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [activeContact, setActiveContact] = useState<string | null>(null);
   const dispatch: AppDispatch = useDispatch();

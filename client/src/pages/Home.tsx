@@ -6,12 +6,14 @@ import RightBar from "../components/RightBar";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import { selectShowInfo } from "../features/sideBar/sideBarToggleSlice";
+import { selectShowContact } from "../features/sideBar/contactToggleSlice";
 function Home() {
   const sideBarInfo = useSelector((state: RootState) => selectShowInfo(state));
+  const contactInfo  = useSelector((state:RootState)=>selectShowContact(state));
   return (
     <>
       <div className="flex h-screen">
-        <LeftBar />
+        {contactInfo && <LeftBar/>}
         <div className="flex flex-col w-full">
           <TopBar />
           <div className="flex flex-grow">

@@ -7,7 +7,8 @@ import {
   toggleInfo,
 } from "../features/sideBar/sideBarToggleSlice";
 import { messages } from "../assets/message"; // Import dummy messages
-import { setSelectedContact } from "../features/selectedContact/selectedContactSlice";
+import { toggleContacts } from "../features/sideBar/contactToggleSlice";
+// import { setSelectedContact } from "../features/selectedContact/selectedContactSlice";
 
 function Chat() {
   const showInfo = useSelector((state: RootState) => selectShowInfo(state));
@@ -19,11 +20,13 @@ function Chat() {
 
 
 
-
+const handleContactToggle=()=>{
+  dispatch(toggleContacts());
+}
   
-  const handleBackToContacts = () => {
-    dispatch(setSelectedContact(null));
-  };
+  // const handleBackToContacts = () => {
+  //   dispatch(setSelectedContact(null));
+  // };
 
 
 
@@ -72,7 +75,7 @@ function Chat() {
     <div className="flex flex-col h-full flex-grow">
       <div className="bg-black text-white p-2 flex items-center justify-between">
         <div className="left-arrow">
-  <button onClick={handleBackToContacts}>
+  <button onClick={handleContactToggle}>
               <i className="fa fa-angle-left" aria-hidden="true"></i>
 
           </button>

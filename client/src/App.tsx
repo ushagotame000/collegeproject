@@ -23,14 +23,15 @@ function App() {
       <Route element={<PrivateRoute />}>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />}></Route>
+          <Route
+          path="/chat"
+          element={selectedContact ? <Chat /> : <LeftBar />}
+        ></Route>
 
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
-        <Route
-          path="/chat"
-          element={selectedContact ? <Chat /> : <LeftBar />}
-        ></Route>
+        
       </Routes>
     </BrowserRouter>
   );
