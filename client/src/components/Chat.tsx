@@ -70,7 +70,8 @@ function Chat() {
 
   return (
     <div className="flex flex-col h-full flex-grow ">
- 
+
+ {/* arrow button */}
       <div className="bg-black text-white p-2 flex items-center justify-between">
         <div className="left-arrow">
   <button onClick={handleBackToContacts}>
@@ -78,6 +79,7 @@ function Chat() {
 
           </button>
         </div>
+
         <div className=" flex grow-0 items-center">
           <div className="rounded-full h-11 w-11 bg-gray-400 flex items-center justify-center">
             <img
@@ -106,6 +108,8 @@ function Chat() {
               <i className="fas fa-search"></i>
             </button>
           </div>
+
+          {/* search and info button  */}
           <button
             className="mr-2 ml-2 rounded-full  h-7 w-7 border-white border focus:outline-none"
             onClick={handleToggleInfo}
