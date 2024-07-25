@@ -6,4 +6,7 @@ export interface IUser {
 
 export interface authState {
   user: IUser | null;
+  token: string | null;
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
 }
