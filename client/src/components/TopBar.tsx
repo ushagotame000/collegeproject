@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { logout } from "../features/users/authSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 function TopBar() {
-  const [showOptions, setShowOptions] = useState(false);
+  const dispatch = useDispatch();
+  const nagivate = useNavigate();
 
+  const [showOptions, setShowOptions] = useState(false);
+  const logoutUser=()=>{
+    console.log("logout");
+    dispatch(logout());
+    nagivate('/login');
+  }
   const handleUserIconClick = () => {
     setShowOptions(!showOptions);
   };
@@ -37,7 +47,7 @@ function TopBar() {
                 Profile
               </button>
               </Link>
-              <button className="block w-full text-left py-2 px-4 hover:bg-violet-800 rounded focus:outline-none">
+              <button className="block w-full text-left py-2 px-4 hover:bg-violet-800 rounded focus:outline-none" onClick={logoutUser}>
                 Log out
               </button>
             </div>

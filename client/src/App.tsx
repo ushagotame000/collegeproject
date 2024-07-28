@@ -9,6 +9,7 @@ import Chat from "./components/Chat";
 import LeftBar from "./components/LeftBar";
 import { useSelector } from "react-redux";
 import { RootState } from "./app/store";
+import PrivateRoute from "./routes/PrivateRoute";
 // import { useState } from "react";
 function App() {
   const selectedContact = useSelector(
@@ -20,17 +21,18 @@ function App() {
     
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
-        {/* <Route
+      <Route element={<PrivateRoute />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />}></Route>
+          <Route
           path="/chat"
           element={selectedContact ? <Chat /> : <LeftBar />}
-         
-        ></Route> */}
-                <Route path="/leftbar" element={<LeftBar />}></Route>
+        ></Route>
 
+        </Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
+        
       </Routes>
     </BrowserRouter>
   );
