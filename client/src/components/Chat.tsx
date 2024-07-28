@@ -8,7 +8,7 @@ import {
 } from "../features/sideBar/sideBarToggleSlice";
 import { messages } from "../assets/message"; // Import dummy messages
 import { toggleContacts } from "../features/sideBar/contactToggleSlice";
-// import { setSelectedContact } from "../features/selectedContact/selectedContactSlice";
+import { setSelectedContact } from "../features/selectedContact/selectedContactSlice";
 
 function Chat() {
   const showInfo = useSelector((state: RootState) => selectShowInfo(state));
@@ -21,6 +21,7 @@ function Chat() {
 
 
 const handleContactToggle=()=>{
+  dispatch(setSelectedContact(null));
   dispatch(toggleContacts());
 }
   

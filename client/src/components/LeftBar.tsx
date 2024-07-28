@@ -4,6 +4,8 @@ import { contact_list } from "../assets/assets";
 import { AppDispatch } from "../app/store";
 import { useDispatch } from "react-redux";
 import { setSelectedContact } from "../features/selectedContact/selectedContactSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/store";
 interface Contact {
   contact_id: string;
   contact_name: string;
@@ -11,7 +13,9 @@ interface Contact {
 }
 
 function LeftBar() {
-
+  const selectedContact = useSelector(
+    (state: RootState) => state.contact.selectedContact
+  );
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [activeContact, setActiveContact] = useState<string | null>(null);
   const dispatch: AppDispatch = useDispatch();
@@ -26,7 +30,9 @@ function LeftBar() {
 
   return (
     <>
-      <div className="bg-black text-white w-80 h-full p-5  lg:block md:block ">
+      <div className={`bg-black text-white h-full p-5 
+    ${selectedContact? 'w-80' : 'w-screen'} 
+    lg:block md:block`}>
         <div className="searchBar relative mb-2 ">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <i className="fas fa-search text-white"></i>
@@ -43,7 +49,7 @@ function LeftBar() {
         {/* section 2 */}
 
         <div className="menu mb-1 flex justify-between items-center">
-          <div className="text-lg hidden sm:block">Chats</div>
+          <div className="text-lg  sm:block">Chats</div>
           <div className="flex space-x-2">
             {/* icon add */}
 
@@ -111,10 +117,10 @@ function LeftBar() {
               </div>
 
               <div>
-                <span className="hidden sm:block  font-thin md:font-medium lg:text-lg">
+                <span className=" sm:block  font-thin md:font-medium lg:text-lg">
                   {contact.contact_name}
                 </span>
-                <div className="hidden sm:block">Message</div>
+                <div className=" sm:block">Message</div>
               </div>
             </div>
           ))}
