@@ -39,7 +39,7 @@ function Home() {
   return (
     <>
       <div className="flex h-screen">
-        {contactInfo && <LeftBar/>}
+        <LeftBar/>
        {selectedContact &&  <div className="flex flex-col w-full">
           <TopBar />
           <div className="flex flex-grow">
