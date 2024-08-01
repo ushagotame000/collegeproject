@@ -9,7 +9,7 @@ function PageNotFound() {
                 Page Not Found
             </p>
         </div>
-        <img src={notFound} alt="" />
+        <img src={notFound} alt="Page not found" />
     </div>
   )
 }
