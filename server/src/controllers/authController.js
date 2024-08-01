@@ -61,3 +61,16 @@ export const loginUser = async (req, res) => {
     res.status(500).json({ message: "Error logging in", error: error.message });
   }
 };
+
+
+export const verifyToken = async(req, res)=>{
+  const token = req.body.token;
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    res.status(200).json({valid:true, decoded });
+  
+  }
+  catch(error){
+    res.status(401).json({message:"Invalid token", error:error.message});
+  }
+}
