@@ -9,6 +9,7 @@ import {
 import { messages } from "../assets/message"; // Import dummy messages
 import { toggleContacts } from "../features/sideBar/contactToggleSlice";
 import { setSelectedContact } from "../features/selectedContact/selectedContactSlice";
+import EmojiPicker, { Theme } from "emoji-picker-react";
 
 function Chat() {
   const showInfo = useSelector((state: RootState) => selectShowInfo(state));
@@ -63,7 +64,7 @@ const handleContactToggle=()=>{
     };
   }, [dispatch, showInfo]);
 
-
+const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 // message show
 
   const filteredMessages = messages.filter(
@@ -169,7 +170,22 @@ const handleContactToggle=()=>{
           <i className="fas fa-image"></i>
           <input type="file" accept="image/*" className="hidden" />
         </label>
-
+        <div>
+          <button
+          className="bg-gray-600 p-2 rounded-md focus:outline-none flex items-center justify-center cursor-pointer"
+          onClick={()=> setShowEmojiPicker((prev)=> !prev)}
+          >
+            <i className="fas fa-smile"></i>
+          </button>
+          {showEmojiPicker && (
+            <div className="absolute bottom-16 left-64 bg-white rounded-md shadow">
+              <EmojiPicker 
+              style={{ width: '250px', height: '350px' }} 
+              theme={Theme.DARK}
+              />
+            </div>
+          )}
+        </div>
         <textarea
           id="chat"
           rows={1}
