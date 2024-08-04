@@ -1,4 +1,4 @@
-import mongoose, { SchemaType } from "mongoose";
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -15,8 +15,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   profileImage: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Image",
+    type: String,
   },
   status: {
     type: String,

@@ -1,45 +1,80 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useEffect, FormEvent } from "react";
 import { assets } from "../../assets/assets";
+import axios from "axios";
 
 const Profile: React.FC = () => {
-  const [photo, setPhoto] = useState<string>(assets.profile);
-  const [bio, setBio] = useState<string>("");
-  const [dob, setDob] = useState<string>("");
-  const [hobbies, setHobbies] = useState<string>("");
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const name = user.username;
 
-  const handlePhotoChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      setPhoto(URL.createObjectURL(event.target.files[0]));
+  const [formData, setFormData] = useState({
+    photoUrl: assets.profile,
+    photo: null as File | null,
+    userName: name,
+    bio: "",
+    dob: "",
+    hobbies: "",
+  });
+
+  useEffect(() => {
+    setFormData((prevData) => ({
+      ...prevData,
+      userName: name,
+      photoUrl: assets.profile,
+    }));
+  }, [name]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handlePhotoChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setFormData((prevData) => ({
+        ...prevData,
+        photo: file,
+        photoUrl: URL.createObjectURL(file),
+      }));
     }
   };
 
-  const handleBioChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setBio(event.target.value);
-  };
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
 
-  const handleDobChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setDob(event.target.value);
-  };
+    const form = new FormData();
+    if (formData.photo) {
+      form.append("photo", formData.photo);
+    }
+    form.append("userName", formData.userName);
+    form.append("bio", formData.bio);
+    form.append("dob", formData.dob);
+    form.append("hobbies", formData.hobbies);
 
-  const handleHobbiesChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setHobbies(event.target.value);
-  };
-
-  const handleCancel = () => {
-    setPhoto(assets.profile);
-    setBio("");
-    setDob("");
-    setHobbies("");
+    try {
+      const response = await axios.post("/api/profile", form, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      alert(response.data.message || "Profile updated successfully!");
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      alert("Failed to update profile.");
+    }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <form action="">
-        <div className="profile-container flex flex-col w-96 mx-auto items-center bg-slate-500 rounded-lg p-6">
+    <div className="flex justify-center items-center h-screen bg-black">
+      <form onSubmit={handleSubmit}>
+        <div className="bg-gradient-to-r from-pink-300 via-purple-400 to-blue-300 profile-container flex flex-col w-96 mx-auto items-center rounded-lg p-6">
           <div className="profile relative mb-6">
-            <div className=" h-28 w-28 rounded-full bg-white">
+            <div className="h-28 w-28 rounded-full bg-white">
               <img
-                src={photo}
+                src={formData.photoUrl}
                 alt="profile"
                 className="h-full w-full rounded-full object-cover"
               />
@@ -47,6 +82,7 @@ const Profile: React.FC = () => {
             <input
               type="file"
               id="photo-upload"
+              name="photo"
               className="hidden"
               accept="image/*"
               onChange={handlePhotoChange}
@@ -65,53 +101,70 @@ const Profile: React.FC = () => {
 
           <div className="profile-info-container flex flex-col items-center space-y-4 w-full">
             <div className="bio-section w-full flex flex-col items-start">
-              <label htmlFor="bio" className="text-white">
+              <label htmlFor="userName" className="text-black">
+                Name:
+              </label>
+              <input
+                type="text"
+                name="userName"
+                id="userName"
+                className="w-full p-2 border rounded-md focus:outline-none"
+                placeholder="User Name"
+                onChange={handleChange}
+                value={formData.userName}
+                readOnly
+              />
+            </div>
+            <div className="bio-section w-full flex flex-col items-start">
+              <label htmlFor="bio" className="text-black">
                 Bio:
               </label>
               <textarea
                 id="bio"
+                name="bio"
                 className="w-full p-2 border rounded-md focus:outline-none resize-none overflow-auto"
                 placeholder="Tell us about yourself..."
-                value={bio}
-                onChange={handleBioChange}
+                onChange={handleChange}
+                value={formData.bio}
               ></textarea>
             </div>
             <div className="dob-section w-full flex flex-col items-start">
-              <label htmlFor="dob" className="text-white">
+              <label htmlFor="dob" className="text-black">
                 Date of Birth:
               </label>
               <input
                 type="date"
                 id="dob"
+                name="dob"
                 className="w-full p-2 border rounded-md focus:outline-none"
-                value={dob}
-                onChange={handleDobChange}
+                onChange={handleChange}
+                value={formData.dob}
               />
             </div>
             <div className="hobbies-section w-full flex flex-col items-start">
-              <label htmlFor="hobbies" className="text-white">
+              <label htmlFor="hobbies" className="text-black">
                 Hobbies:
               </label>
               <input
                 type="text"
+                name="hobbies"
                 id="hobbies"
                 className="w-full p-2 border rounded-md focus:outline-none"
                 placeholder="Enter your hobbies"
-                value={hobbies}
-                onChange={handleHobbiesChange}
+                onChange={handleChange}
+                value={formData.hobbies}
               />
             </div>
             <div className="buttons flex space-x-5 items-center pt-3 w-full">
               <button
                 type="submit"
-                className="w-1/2 py-2 px-4 bg-purple-500 text-white text-center hover:bg-purple-300 rounded focus:outline-none"
+                className="w-1/2 py-2 px-4 bg-purple-800 text-white text-center hover:bg-blue-500 rounded focus:outline-none"
               >
                 Save
               </button>
               <button
                 type="button"
                 className="w-1/2 py-2 px-4 bg-gray-400 text-white text-center hover:bg-gray-300 rounded focus:outline-none"
-                onClick={handleCancel}
               >
                 Cancel
               </button>

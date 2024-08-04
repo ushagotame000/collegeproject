@@ -28,9 +28,9 @@ function Login() {
   };
   return (
     <>
-      <div className="login-page flex justify-center items-center h-screen bg-gray-100">
+      <div className="login-page flex justify-center items-center h-screen bg-black">
         <form
-          className="container max-w-lg bg-black flex flex-col gap-7 rounded-xl text-base p-6 justify-center w-96"
+          className="container max-w-lg drop-shadow-lg bg-gradient-to-r from-pink-300 via-purple-400 to-blue-300 flex flex-col gap-7 rounded-xl text-base p-6 justify-center w-96"
           onSubmit={handleSubmit}
         >
           <div className="login-title flex justify-between text-center font-bold text-xl font-mono">
@@ -63,7 +63,7 @@ function Login() {
 
           <button
             type="submit"
-            className="bg-purple-800 border-none p-3 rounded-md text-white"
+            className="bg-purple-800  border-none p-3 rounded-md text-white"
           >
             Login
           </button>
@@ -71,7 +71,7 @@ function Login() {
           <p className="text-white">
             Create a new account?
             <span
-              className="text-purple-500 font-semibold cursor-pointer"
+              className="text-black font-semibold cursor-pointer"
               onClick={() => (window.location.href = "/signup")}
             >
               {" "}

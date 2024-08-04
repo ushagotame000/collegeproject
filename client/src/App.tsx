@@ -10,6 +10,7 @@ import LeftBar from "./components/LeftBar";
 import { useSelector } from "react-redux";
 import { RootState } from "./app/store";
 import PrivateRoute from "./routes/PrivateRoute";
+import PageNotFound from "./pages/PageNotFound";
 // import { useState } from "react";
 function App() {
   const selectedContact = useSelector(
@@ -32,7 +33,7 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
-        
+        <Route path="*" element={<PageNotFound/>}></Route>
       </Routes>
     </BrowserRouter>
   );

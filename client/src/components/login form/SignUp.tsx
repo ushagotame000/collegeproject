@@ -70,9 +70,9 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="signup-page flex justify-center items-center h-screen bg-gray-100">
+    <div className="signup-page flex justify-center items-center h-screen bg-black">
       <form
-        className="container max-w-lg bg-black flex flex-col gap-7 rounded-xl text-base p-6 justify-center w-96"
+        className="container max-w-lg bg-gradient-to-r from-pink-300 via-purple-400 to-blue-300 flex flex-col gap-7 rounded-xl text-base p-6 justify-center w-96"
         onSubmit={handleSubmit}
       >
         <div className="signup-title flex justify-between text-center font-bold text-xl font-mono">
@@ -147,7 +147,7 @@ const SignUp: React.FC = () => {
 
         <button
           type="submit"
-          className="bg-purple-600 border-none p-3 rounded-md text-white"
+          className="bg-purple-800 border-none p-3 rounded-md text-white"
         >
           Create account
         </button>
@@ -168,7 +168,7 @@ const SignUp: React.FC = () => {
         <p className="text-white">
           Already have an account?
           <span
-            className="text-purple-600 font-semibold cursor-pointer"
+            className="text-black font-semibold cursor-pointer"
             onClick={() => (window.location.href = "/login")}
           >
             <u> Login here</u>
