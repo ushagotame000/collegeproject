@@ -173,7 +173,7 @@ const handleContactToggle=()=>{
           <input type="file" accept="image/*" className="hidden" />
         </label>
 
-        <textarea
+        <textarea 
           id="chat"
           rows={1}
           className="flex-grow p-2.5 text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:outline-none resize-none"

@@ -19,6 +19,20 @@ app.use("/api/auth", authRoutes);
 const server = http.createServer(app);
 const io = setupSocket(server);
 
+io.on('connection', (socket) => {
+  console.log('A user connected');
+  console.log("Id",socket.id);
+
+  socket.on('message', (message) => {
+    console.log("Received message:", message);
+    io.emit('message', message);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('A user disconnected');
+  });
+});
+
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
   console.log(`Server is running at port ${PORT}`);

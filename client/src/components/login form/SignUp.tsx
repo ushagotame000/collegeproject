@@ -42,6 +42,8 @@ const SignUp: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    console.log("test");
     if (!checkboxChecked) {
       setError("Please agree to the terms of use & privacy policy");
       return;
